@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Knee Replacement - Aafiya Mediretreats</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. RESET & GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- 2. PAGE LOADER --- */
+        #page-loader {
+            position: fixed; inset: 0; background: #fff; z-index: 9999;
+            display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 50px; height: 50px; border: 5px solid #f3f3f3;
+            border-top: 5px solid #0099ff; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* --- 3. HEADER --- */
+        .top-header { background: #fff; padding: 15px 0; }
+        .flex-header { display: flex; justify-content: space-between; align-items: center; }
+        .header-logo { max-height: 70px; width: auto; display: block; }
+        
+        .contact-info-group { display: flex; gap: 25px; align-items: center; }
+        .info-item { display: flex; align-items: center; gap: 10px; }
+        .icon-box { font-size: 20px; color: #002b4f; }
+        .info-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .info-text .label { font-size: 11px; color: #555; text-transform: uppercase; }
+        .info-text .value { font-size: 14px; font-weight: bold; color: #333; }
+        .country-selector { display: flex; gap: 5px; align-items: center; cursor: pointer; border: 1px solid #ddd; padding: 5px; border-radius: 4px; }
+
+        /* --- 4. NAVBAR --- */
+        .main-navbar { background-color: #0099ff; color: white; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 50px; padding: 0 15px; }
+        @media (min-width: 993px) { .nav-links { display: flex; gap: 0; flex-grow: 1; justify-content: center; } }
+        .nav-links li a { display: block; padding: 0 15px; line-height: 50px; color: white; font-weight: 500; font-size: 14px; transition: background 0.3s; }
+        .nav-links li a:hover { background: rgba(0,0,0,0.1); }
+        .search-box { background: #007acc; height: 50px; display: flex; align-items: center; padding: 0 25px; cursor: pointer; gap: 10px; }
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; color: white; }
+
+        /* --- 5. HERO SECTION --- */
+        .hero-section { position: relative; height: 420px; overflow: hidden; display: flex; align-items: center; }
+        .hero-bg-image {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 30%;
+            background-image: url('https://images.unsplash.com/photo-1584516150909-c43483ee7932?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover; background-position: center; z-index: 1;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; bottom: 0; width: 55%;
+            background: #002b4f; z-index: 2;
+            border-top-right-radius: 100% 100%; border-bottom-right-radius: 50% 100%;
+            box-shadow: 10px 0 20px rgba(0,0,0,0.3); display: flex; align-items: center;
+        }
+        .hero-content { padding-left: 15px; padding-right: 60px; color: white; }
+        .breadcrumbs { font-size: 13px; color: #ccc; margin-bottom: 15px; }
+        .hero-section h1 { font-size: 42px; margin-bottom: 15px; font-weight: bold; }
+        .hero-desc { font-size: 16px; margin-bottom: 25px; line-height: 1.5; max-width: 480px; opacity: 0.9; }
+        .btn-enquire {
+            background: #0099ff; color: white; border: none; padding: 12px 35px; 
+            font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;
+        }
+        .btn-enquire:hover { background: #007acc; }
+
+        /* --- 6. SUB NAV STRIP --- */
+        .sub-nav-strip { background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .sub-nav-strip ul { display: flex; overflow-x: auto; padding: 0; margin: 0; }
+        .sub-nav-strip li { font-weight: 600; color: #666; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; font-size: 14px; transition: all 0.3s; }
+        .sub-nav-strip li a { display: block; padding: 15px 20px; color: inherit; }
+        .sub-nav-strip li.active { color: #002b4f; border-bottom-color: #0099ff; }
+        .sub-nav-strip li:hover { color: #0099ff; }
+
+        /* --- 7. OVERVIEW SECTION --- */
+        .overview-section { padding: 80px 0 40px 0; scroll-margin-top: 60px; }
+        .section-title { color: #002b4f; font-size: 28px; font-weight: 700; margin-bottom: 25px; position: relative; }
+        .red-dot { color: #e63946; }
+        .overview-wrapper { display: flex; gap: 50px; align-items: center; }
+        .overview-text { flex: 1; color: #555; line-height: 1.8; font-size: 15px; }
+        .overview-text p { margin-bottom: 20px; }
+        .overview-image { flex: 0 0 45%; }
+        .overview-image img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .blue-divider { border: 0; border-top: 2px dashed #cceeff; margin: 60px 0; }
+
+        /* --- 8. SPLIT LAYOUT --- */
+        .split-layout { display: grid; grid-template-columns: 1.8fr 1fr; gap: 60px; margin-bottom: 80px; align-items: start; }
+        .content-column section { scroll-margin-top: 80px; margin-bottom: 40px; }
+        .content-column h3 { color: #002b4f; font-size: 24px; margin-bottom: 20px; margin-top: 0; font-weight: 700; }
+        .content-column p { color: #555; line-height: 1.7; margin-bottom: 20px; font-size: 15px; }
+        
+        /* Lists */
+        .check-list { list-style: none; padding: 0; margin-bottom: 30px; }
+        .check-list li { margin-bottom: 15px; display: flex; gap: 15px; color: #555; font-size: 15px; line-height: 1.6; align-items: flex-start; }
+        .check-list li::before {
+            content: ''; display: inline-block; width: 12px; height: 12px;
+            border: 3px solid #0099ff; border-radius: 50%; margin-top: 6px; flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-list { margin-top: 30px; }
+        .faq-item { border-bottom: 1px solid #eee; }
+        .faq-header {
+            padding: 20px 0; background: #fff; cursor: pointer; 
+            display: flex; align-items: center; gap: 20px; width: 100%;
+            border: none; text-align: left; color: #333; font-size: 16px; font-weight: 600;
+        }
+        .faq-header i { color: #0099ff; font-size: 14px; flex-shrink: 0; }
+        .faq-content { display: none; padding: 0 0 25px 34px; }
+        .faq-content p { border-left: 3px solid #0099ff; padding-left: 20px; color: #666; font-size: 15px; line-height: 1.7; margin: 0; }
+
+        /* Patient Stories */
+        .story-card {
+            border: 1px solid #eee; padding: 25px; border-radius: 12px; background: #fff;
+            height: 100%; display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.3s;
+        }
+        .story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .story-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .story-header h4 { color: #002b4f; font-size: 16px; font-weight: 700; width: 85%; margin: 0; }
+        .story-header i { color: #ff99aa; font-size: 32px; opacity: 0.6; }
+        .story-media { position: relative; margin-bottom: 20px; border-radius: 8px; overflow: hidden; }
+        .story-media img { width: 100%; height: 180px; object-fit: cover; }
+        .play-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 50px; height: 50px; border: 2px solid #0099ff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.95);
+        }
+        .play-btn i { color: #0099ff; font-size: 18px; margin-left: 4px; }
+        .story-text { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 25px; height: 130px; overflow: hidden; }
+        .story-footer { display: flex; align-items: center; gap: 15px; border-top: 1px solid #f5f5f5; padding-top: 20px; }
+        .story-footer img { width: 50px !important; height: 50px !important; border-radius: 50%; object-fit: cover; }
+        .owl-dots { text-align: center; margin-top: 30px; }
+        .owl-dot span { width: 12px; height: 12px; margin: 5px 7px; background: #e0e0e0 !important; display: block; border-radius: 50%; }
+        .owl-dot.active span { background: #0099ff !important; }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 90px; }
+        .form-box {
+            background: #fff; padding: 30px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;
+        }
+        .form-box h3 { color: #3399ff; font-family: 'Brush Script MT', cursive; font-size: 36px; margin-bottom: 15px; font-weight: normal; }
+        .form-box p { font-size: 15px; color: #666; margin-bottom: 25px; }
+        .form-box input, .form-box textarea {
+            width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;
+        }
+        .btn-form {
+            width: 100%; background: #0099ff; color: white; border: none; padding: 15px; border-radius: 6px; font-weight: 700; font-size: 16px; cursor: pointer;
+        }
+
+        /* --- DOCTORS & HOSPITALS --- */
+        .doctors-section { background-color: #ebf6fc; padding: 80px 0; text-align: center; }
+        .hospitals-section { background: #fff; padding: 80px 0; text-align: center; }
+        .doc-subtitle { color: #ff4d4d; font-family: 'Brush Script MT', cursive; font-size: 32px; margin-bottom: 10px; }
+        .doc-title { color: #0b1d30; font-size: 36px; font-weight: 800; margin-bottom: 50px; }
+        .doc-title span { color: #0099ff; }
+
+        /* Cards */
+        .doctor-card-new, .hospital-card {
+            background: #fff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; margin: 15px 5px; border: 1px solid #f5f5f5; overflow: hidden;
+        }
+        .doctor-card-new { padding: 20px; }
+        .doc-img-placeholder {
+            width: 100%; height: 240px; background-color: #ffe6eb; margin-bottom: 20px; border-radius: 8px;
+            background-image: url('https://placehold.co/400x500/ffe6eb/ff4d4d?text=Doctor+Image'); background-size: cover; background-position: center;
+        }
+        .doc-name { color: #ff4d4d; font-family: 'Brush Script MT', cursive; font-size: 26px; margin-bottom: 10px; }
+        .doc-loc { font-weight: 700; font-size: 15px; color: #333; margin-bottom: 8px; }
+        .doc-deg { font-size: 14px; color: #777; }
+
+        .hospital-img { width: 100%; height: 220px; object-fit: cover; }
+        .hospital-info { padding: 25px; }
+        .hospital-name { font-size: 20px; font-weight: 700; color: #0b1d30; margin-bottom: 8px; }
+        .hospital-loc { font-family: 'Brush Script MT', cursive; color: #ff4d4d; font-size: 20px; }
+        .hospital-cta { margin-top: 50px; font-size: 16px; color: #555; }
+        .hospital-cta a { color: #ff4d4d; text-decoration: underline; font-weight: 700; }
+        
+        /* --- FINAL FOOTER STYLES --- */
+        footer { background: #fff; margin-top: 0; }
+        .footer-cta-banner {
+            background: linear-gradient(135deg, #2dbdfc 0%, #0099ff 100%);
+            padding: 70px 0; color: white; text-align: center; position: relative; overflow: visible;
+        }
+        .footer-cta-banner h2 { font-size: 38px; font-weight: 800; margin: 15px 0 25px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .footer-cta-banner p { font-size: 14px; opacity: 0.95; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .banner-actions { margin-top: 35px; display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .footer-cta-banner .cta-btn {
+            background: #0b1d30; color: white; border: none; padding: 15px 35px;
+            font-weight: 700; border-radius: 6px; font-size: 16px; cursor: pointer;
+        }
+        .footer-cta-banner .phone { font-size: 28px; font-weight: 800; vertical-align: middle; }
+
+        .join-card {
+            position: absolute; right: 5%; bottom: -50px;
+            background: white; color: #333; padding: 30px;
+            border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            width: 320px; text-align: left; z-index: 10; display: none;
+            border-top: 4px solid #ff4d4d;
+        }
+        .join-card h4 { color: #0b1d30; font-size: 18px; margin-bottom: 8px; margin-top:0; font-weight: 700; }
+        .join-card p { font-size: 14px; color: #666; line-height: 1.6; margin-top: 15px; }
+        
+        .main-footer { background-color: #0b1d30; padding: 100px 0 60px; color: #fff; font-size: 14px; position: relative; z-index: 1; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 60px; }
+        .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 20px; font-weight: 600; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li::before { content: '- '; color: #0099ff; margin-right: 5px; }
+        .footer-col ul li a { color: #aab; transition: color 0.3s; }
+        .footer-col ul li a:hover { color: #fff; }
+
+        .footer-divider { border: 0; border-top: 1px solid #233240; margin: 0 0 40px 0; }
+
+        .footer-bottom-info { display: grid; grid-template-columns: 1.2fr 2fr 1fr; gap: 40px; }
+        .fb-logo img { max-width: 180px; }
+        .fb-about h4 { color: #fff; font-size: 18px; margin-bottom: 15px; }
+        .fb-about p { font-size: 13px; color: #ccc; line-height: 1.8; }
+        .fb-follow h4 { color: #fff; font-size: 18px; margin-bottom: 15px; }
+        
+        .social-icons { display: flex; gap: 10px; margin-bottom: 15px; }
+        .social-icon { 
+            width: 32px; height: 32px; border-radius: 4px; display: flex; 
+            align-items: center; justify-content: center; color: white; font-size: 16px; 
+        }
+        .social-fb { background: #3b5998; }
+        .social-tw { background: #1da1f2; }
+        .social-in { background: #e1306c; }
+        .social-yt { background: #ff0000; }
+        
+        .cust-service p { font-size: 13px; margin-bottom: 5px; color: #ccc; }
+        .cust-service strong { font-size: 20px; color: #0099ff; font-weight: 700; }
+
+        .copyright-bar { background-color: #0099ff; padding: 20px 0; color: white; font-size: 13px; }
+        .flex-copy { display: flex; justify-content: space-between; align-items: center; }
+        .policy-links a { color: white; text-decoration: none; margin-left: 30px; }
+
+        /* --- MOBILE --- */
+        @media (max-width: 992px) {
+            .flex-header { flex-direction: column; gap: 20px; text-align: center; }
+            .contact-info-group { flex-wrap: wrap; justify-content: center; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 50px; left: 0; width: 100%; background: #0099ff; padding: 20px 0; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+            .hero-overlay { width: 100%; border-radius: 0; padding: 40px 0; }
+            .hero-content { padding: 0 20px; text-align: center; }
+            .hero-bg-image { left: 0; width: 100%; }
+            .overview-wrapper { flex-direction: column; }
+            .overview-image { width: 100%; margin-top: 20px; }
+            .split-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-top: 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-bottom-info { grid-template-columns: 1fr; text-align: center; }
+            .fb-logo img { margin: 0 auto 15px; }
+            .social-icons { justify-content: center; }
+            .join-card { display: none; }
+            .flex-copy { flex-direction: column; gap: 10px; }
+        }
+        @media (min-width: 993px) { .join-card { display: block; } }
+    </style>
+</head>
+<body>
+
+    <div id="page-loader"><div class="spinner"></div></div>
+
+    <header class="top-header">
+        <div class="container flex-header">
+            <div class="logo-section">
+                <img src="pic.png.png" alt="Aafiya Mediretreats" class="header-logo">
+            </div>
+            <div class="contact-info-group">
+                <div class="info-item"><i class="fas fa-comments icon-box"></i><div class="info-text"><span class="label">Second Medical Opinion</span><span class="value">Book Consultation</span></div></div>
+                <div class="info-item"><i class="fas fa-phone-alt icon-box"></i><div class="info-text"><span class="label">Call Us On</span><span class="value">985 896 2222</span></div></div>
+                <div class="info-item"><i class="fas fa-envelope icon-box"></i><div class="info-text"><span class="label">Email Us On</span><span class="value">info@mediretreats.com</span></div></div>
+                <div class="country-selector"><img src="https://flagcdn.com/gb.svg" width="25" alt="UK"><i class="fas fa-caret-down"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-navbar">
+        <div class="container nav-container">
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="mobile-nav">
+                <li><a href="#">Home</a></li><li><a href="#">About Us</a></li><li><a href="#">Treatments +</a></li><li><a href="#">Destinations +</a></li><li><a href="#">Hospitals</a></li><li><a href="#">FAQs</a></li><li><a href="#">Blog</a></li><li><a href="#">Request A Quote</a></li>
+            </ul>
+            <div class="search-box"><i class="fas fa-search"></i> <span>Search</span></div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-bg-image" style="background-image: url('https://images.unsplash.com/photo-1584516150909-c43483ee7932?q=80&w=2000&auto=format&fit=crop');"></div>
+        <div class="hero-overlay">
+            <div class="container hero-content">
+                <div class="breadcrumbs">Home <i class="fas fa-chevron-right"></i> Treatments <i class="fas fa-chevron-right"></i> Orthopaedics <i class="fas fa-chevron-right"></i> Knee Replacement</div>
+                <h1>Total Knee Replacement</h1>
+                <p class="hero-desc">Total knee replacement is a surgery to remove and replace the whole damaged knee joint with an artificial joint.</p>
+                <button class="btn-enquire">Enquire Now</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="sub-nav-strip">
+        <div class="container">
+            <ul>
+                <li class="active"><a href="#overview">Overview</a></li><li><a href="#eligibility">Eligibility</a></li><li><a href="#preparation">Preparation</a></li><li><a href="#about">About Treatment</a></li><li><a href="#post-treatment">Post-Treatment Care</a></li><li><a href="#recovery">Recovery Tips</a></li><li><a href="#faqs">FAQs</a></li><li><a href="#stories">Patient Stories</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="container overview-section" id="overview">
+        <h2 class="section-title">Treatment Overview<span class="red-dot">.</span></h2>
+        <div class="overview-wrapper">
+            <div class="overview-text">
+                <p>Lorem incididunt ut labore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div class="overview-image">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Doctor Consulting" loading="lazy">
+            </div>
+        </div>
+        <hr class="blue-divider">
+    </section>
+
+    <div class="container split-layout">
+        <div class="left-content content-column">
+            <section id="eligibility">
+                <h3>Eligibility For Treatment<span class="red-dot">.</span></h3>
+                <p>Any individual who has tried diet and exercise but failed to lose weight is considered as a good candidate for gastric bypass. Although gastric bypass aids in weight loss, it is not an appropriate option for everyone. Based on the overall health and certain medical guidelines, the doctor will decide whether you are eligible for gastric bypass or not.</p>
+                <p style="margin-top:15px; margin-bottom: 10px;">In general, gastric bypass could be a good option if:</p>
+                <ul class="check-list">
+                    <li>The BMI (body mass index) is 40 or more</li>
+                    <li>Your BMI is 30 or more with severe weight-related health conditions like type-2 diabetes and high blood pressure</li>
+                    <li>You are willing to make permanent changes in the lifestyle</li>
+                </ul>
+                <hr class="blue-divider">
+            </section>
+
+            <section id="preparation">
+                <h3>Preparation Before Treatment<span class="red-dot">.</span></h3>
+                <p>Any individual who has tried diet and exercise but failed to lose weight is considered as a good candidate for gastric bypass. Although gastric bypass aids in weight loss, it is not an appropriate option for everyone. Based on the overall health and certain medical guidelines, the doctor will decide whether you are eligible for gastric bypass or not.</p>
+                <p style="margin-top:15px; margin-bottom: 10px;">In general, gastric bypass could be a good option if:</p>
+                <ul class="check-list">
+                    <li>The BMI (body mass index) is 40 or more</li>
+                    <li>Your BMI is 30 or more with severe weight-related health conditions</li>
+                    <li>You are willing to make permanent changes in the lifestyle</li>
+                </ul>
+                <hr class="blue-divider">
+            </section>
+
+            <section id="about">
+                <h3>About Treatment<span class="red-dot">.</span></h3>
+                <p>Any individual who has tried diet and exercise but failed to lose weight is considered as a good candidate for gastric bypass. Although gastric bypass aids in weight loss, it is not an appropriate option for everyone. Based on the overall health and certain medical guidelines, the doctor will decide whether you are eligible for gastric bypass or not. It is generally performed laparoscopically, which involves smaller incisions and quicker recovery times compared to open surgery.</p>
+                <p style="margin-top:15px; margin-bottom: 10px;">In general, gastric bypass could be a good option if:</p>
+                <ul class="check-list">
+                    <li>The BMI (body mass index) is 40 or more</li>
+                    <li>Your BMI is 30 or more with severe weight-related health conditions</li>
+                    <li>You are willing to make permanent changes in the lifestyle</li>
+                </ul>
+                <hr class="blue-divider">
+            </section>
+
+            <section id="post-treatment">
+                <h3>Post-Treatment Care Treatment<span class="red-dot">.</span></h3>
+                <p>Any individual who has tried diet and exercise but failed to lose weight is considered as a good candidate for gastric bypass. Although gastric bypass aids in weight loss, it is not an appropriate option for everyone. Based on the overall health and certain medical guidelines, the doctor will decide whether you are eligible for gastric bypass or not. Post-surgery care includes a strict diet plan, regular exercise, and vitamin supplements to ensure proper nutrition and healing.</p>
+                <p style="margin-top:15px; margin-bottom: 10px;">In general, gastric bypass could be a good option if:</p>
+                <ul class="check-list">
+                    <li>The BMI (body mass index) is 40 or more</li>
+                    <li>Your BMI is 30 or more with severe weight-related health conditions like type-2 diabetes and high blood pressure</li>
+                    <li>You are willing to make permanent changes in the lifestyle</li>
+                </ul>
+                <hr class="blue-divider">
+            </section>
+
+             <section id="recovery">
+                <h3>Treatment Recovery Tips<span class="red-dot">.</span></h3>
+                <p>Any individual who has tried diet and exercise but failed to lose weight is considered as a good candidate for gastric bypass. Although gastric bypass aids in weight loss, it is not an appropriate option for everyone. Based on the overall health and certain medical guidelines, the doctor will decide whether you are eligible for gastric bypass or not. Recovery tips include staying hydrated, following the prescribed diet, avoiding heavy lifting, and attending all follow-up appointments.</p>
+                <p style="margin-top:15px; margin-bottom: 10px;">In general, gastric bypass could be a good option if:</p>
+                <ul class="check-list">
+                    <li>The BMI (body mass index) is 40 or more</li>
+                    <li>Your BMI is 30 or more with severe weight-related health conditions</li>
+                    <li>You are willing to make permanent changes in the lifestyle</li>
+                </ul>
+                <hr class="blue-divider">
+            </section>
+
+            <section id="faqs">
+                <h3>Treatment FAQs<span class="red-dot">.</span></h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-header"><i class="fas fa-plus"></i> How do I know the clinic I am searching is verified?</button>
+                        <div class="faq-content"><p>You can verify clinics by checking their official accreditations.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header"><i class="fas fa-plus"></i> I can't travel alone so can some family member or friend accompany me?</button>
+                        <div class="faq-content"><p>Yes, most hospitals allow one attendant to stay with the patient.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header"><i class="fas fa-plus"></i> Can I see my doctor before I decide and what about my post recovery?</button>
+                        <div class="faq-content"><p>Yes, pre and post treatment consultation can be done.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-header"><i class="fas fa-plus"></i> How do I share my reports and medical cases?</button>
+                        <div class="faq-content"><p>You can share your reports securely via email or our patient portal.</p></div>
+                    </div>
+                </div>
+                <hr class="blue-divider">
+            </section>
+
+            <section id="stories">
+                <h3>Patient Stories & Videos<span class="red-dot">.</span></h3>
+                
+                <div class="owl-carousel owl-theme" id="patient-slider">
+                    <div class="item">
+                        <div class="story-card">
+                            <div class="story-header">
+                                <h4>Underwent procedure for retinal detachment</h4>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="story-media">
+                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=80" alt="Patient Video" loading="lazy">
+                                <div class="play-btn"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="story-footer">
+                                <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Luke Olfert" loading="lazy">
+                                <div>
+                                    <h5>Luke Olfert</h5>
+                                    <p>New York, USA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="story-card">
+                            <div class="story-header">
+                                <h4>Underwent Colonoscopy and Medical Management</h4>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="story-text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div class="story-footer">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Luke Olfert" loading="lazy">
+                                <div>
+                                    <h5>Luke Olfert</h5>
+                                    <p>Sydney, Australia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="right-sidebar">
+            <aside class="sidebar">
+                <div class="form-box">
+                    <h3>Need Help?</h3>
+                    <p>Just let us know. We will be happy to assist you.</p>
+                    <form>
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <textarea placeholder="Describe Your Treatment Requirement" rows="3"></textarea>
+                        <button type="submit" class="btn-form">Send Enquiry</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <section class="doctors-section">
+        <div class="container">
+            <div class="doc-subtitle">Doctors</div>
+            <h2 class="doc-title">Top Orthopaedic <span>Doctors</span></h2>
+            <div class="owl-carousel owl-theme" id="doctors-slider">
+                <div class="item"><div class="doctor-card-new"><div class="doc-img-placeholder"></div><h3 class="doc-name">Dr. Faique Falke</h3><div class="doc-loc">Musaffah Industrial - Abu Dhabi</div><div class="doc-deg">Doctor Degree & Specialist</div></div></div>
+                <div class="item"><div class="doctor-card-new"><div class="doc-img-placeholder"></div><h3 class="doc-name">Dr. Faique Falke</h3><div class="doc-loc">Musaffah Industrial - Abu Dhabi</div><div class="doc-deg">Doctor Degree & Specialist</div></div></div>
+                <div class="item"><div class="doctor-card-new"><div class="doc-img-placeholder"></div><h3 class="doc-name">Dr. Faique Falke</h3><div class="doc-loc">Musaffah Industrial - Abu Dhabi</div><div class="doc-deg">Doctor Degree & Specialist</div></div></div>
+                <div class="item"><div class="doctor-card-new"><div class="doc-img-placeholder"></div><h3 class="doc-name">Dr. Faique Falke</h3><div class="doc-loc">Musaffah Industrial - Abu Dhabi</div><div class="doc-deg">Doctor Degree & Specialist</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hospitals-section">
+        <div class="container">
+            <div class="doc-subtitle">Hospitals</div>
+            <h2 class="doc-title">Recommended <span>Hospitals</span></h2>
+            <div class="owl-carousel owl-theme" id="hospitals-slider">
+                <div class="item">
+                    <div class="hospital-card">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80" class="hospital-img" loading="lazy">
+                        <div class="hospital-info">
+                            <div class="hospital-name">Apollo Hospital</div>
+                            <div class="hospital-loc">Bangalore</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hospital-card">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" class="hospital-img" loading="lazy">
+                        <div class="hospital-info">
+                            <div class="hospital-name">Medanta Hospital</div>
+                            <div class="hospital-loc">Gurgaon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hospital-card">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80" class="hospital-img" loading="lazy">
+                        <div class="hospital-info">
+                            <div class="hospital-name">Jaslok Hospital</div>
+                            <div class="hospital-loc">Mumbai</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hospital-cta">Don’t hesitate, contact us for better help and services. <a href="#">Explore all Hospitals</a></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-cta-banner">
+            <div class="container">
+                <p>Stay healthy and strong to enjoy life</p>
+                <h2>We have team of healthcare experts</h2>
+                <div class="banner-actions">
+                    <button class="cta-btn">Get in Touch</button>
+                    <span class="phone">+91 9856555666</span>
+                </div>
+                <div class="join-card">
+                    <h4>Are you doctor / hospital?</h4>
+                    <h4 style="color:#ff4d4d;">Join Mediretreats</h4>
+                    <p>Lorem ipsum dolor sit amet, contetur adipiscing elit, sed do eiusmod.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Important Links</h4>
+                        <ul><li><a href="#">Home</a></li><li><a href="#">About Us</a></li><li><a href="#">FAQs</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Top Hospitals</h4>
+                        <ul><li><a href="#">Apollo Hospital Delhi</a></li><li><a href="#">Medanta Hospital Gurgaon</a></li><li><a href="#">Max Hospital Delhi</a></li><li><a href="#">Jaslok hospital Mumbai</a></li><li><a href="#">Artemis hospital Gurgaon</a></li><li><a href="#">Fortis Hospital Gurgaon</a></li><li><a href="#">View All</a></li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Speciality Treatments</h4>
+                        <ul><li><a href="#">Knee Replacement Surgeon</a></li><li><a href="#">Urologist</a></li><li><a href="#">Spine Surgeon</a></li><li><a href="#">ENT Surgeons</a></li><li><a href="#">Orthopedic</a></li><li><a href="#">Cardiologist</a></li><li><a href="#">View All</a></li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Medical Tourism Destinations</h4>
+                        <ul><li><a href="#">Medical Tourism in India</a></li><li><a href="#">Medical Tourism in Sri Lanka</a></li><li><a href="#">Medical Tourism in UAE</a></li><li><a href="#">View All</a></li></ul>
+                    </div>
+                </div>
+
+                <hr class="footer-divider">
+
+                <div class="footer-bottom-info">
+                    <div class="fb-logo"><img src="pic.png.png" alt="Logo" class="header-logo"></div>
+                    <div class="fb-about">
+                         <h4>About Aafiya Mediretreats</h4>
+                         <p>Aafiya Mediretreats is a free, confidential, independent resource for patients and industry providers. Our mission is to provide a central portal where patients, Medical Tourism providers, hospitals, clinics, employers, and insurance companies can all find the information they need. Our site focuses on patients looking for specific knowledge in the fields of medical tourism, dental tourism, and health tourism.</p>
+                    </div>
+                    <div class="fb-follow">
+                         <h4>Follow Us On</h4>
+                         <div class="social-icons">
+                            <a href="#" class="social-icon social-fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon social-tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon social-in"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon social-yt"><i class="fab fa-youtube"></i></a>
+                         </div>
+                         <div class="cust-service">
+                             <p>Customer Service</p>
+                             <strong>+91 9856555666</strong>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright-bar">
+            <div class="container flex-copy">
+                <p>Copyright © 2020 Aafiya Mediretreats. All Rights Reserved. Designed by Ideamagix.</p>
+                <div class="policy-links"><a href="#">Terms And Conditions</a><a href="#">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(window).on('load', function() { $('#page-loader').fadeOut('slow'); });
+            $('.mobile-toggle').click(function(){ $('#mobile-nav').toggleClass('active'); });
+            $('.sub-nav-strip a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if(target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({ scrollTop: target.offset().top - 140 }, 800);
+                    $('.sub-nav-strip li').removeClass('active'); $(this).parent('li').addClass('active');
+                }
+            });
+            $('#doctors-slider').owlCarousel({ loop:true, margin:20, nav:false, responsive:{ 0:{items:1}, 600:{items:2}, 1000:{items:3} } });
+            $('#hospitals-slider').owlCarousel({ loop:true, margin:20, nav:false, dots:true, responsive:{ 0:{items:1}, 600:{items:2}, 1000:{items:3} } });
+            $('#patient-slider').owlCarousel({ loop:false, margin:25, nav:false, dots:true, responsive:{ 0:{items:1}, 768:{items:2}, 1000:{items:2} } });
+            $('.faq-header').click(function(){
+                var $content = $(this).next(); var $icon = $(this).find('i');
+                $('.faq-content').not($content).slideUp(300);
+                $('.faq-header').not($(this)).find('i').removeClass('fa-minus').addClass('fa-plus');
+                $content.slideToggle(300);
+                $icon.toggleClass('fa-plus fa-minus');
+            });
+        });
+    </script>
+</body>
+</html>
